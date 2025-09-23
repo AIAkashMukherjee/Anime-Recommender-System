@@ -2,3 +2,5 @@
 .env 
 /notebook/weights.weights.h5
 /artifacts/raw
+*.h5
+*.csv
