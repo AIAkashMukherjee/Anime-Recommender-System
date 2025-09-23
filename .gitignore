@@ -1,2 +1,4 @@
 /my_env
 .env 
+/notebook/weights.weights.h5
+/artifacts/raw
