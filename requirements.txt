@@ -9,4 +9,6 @@ dvc
 dvc-gs
 flask
 joblib
-
+wordcloud
+scikit-learn
+matplotlib

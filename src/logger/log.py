@@ -1,23 +1,19 @@
-from datetime import datetime
-import os
 import logging
+import os
+from datetime import datetime
 
-# Format datetime for log file name
-logging_str='[ %(asctime)s ] %(lineno)d %(name)s - %(levelname)s - %(message)s'
+LOGS_DIR = "logs"
+os.makedirs(LOGS_DIR,exist_ok=True)
 
-LOG_FILE = f'{datetime.now().strftime("%m %d %Y %H %M")}.log'
-
-log_path=os.path.join(os.getcwd(),'logs',LOG_FILE)
-os.makedirs(log_path,exist_ok=True)
-
-
-log_filepath=os.path.join(log_path,LOG_FILE)
+LOG_FILE = os.path.join(LOGS_DIR, f"log_{datetime.now().strftime('%Y-%m-%d')}.log")
 
 logging.basicConfig(
-    filename=log_filepath,
-    level=logging.INFO,
-    format=logging_str
+    filename=LOG_FILE,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    level=logging.INFO
 )
 
-
-logger=logging.getLogger(__name__)
+def get_logger(name):
+    logger = logging.getLogger(name)
+    logger.setLevel(logging.INFO)
+    return logger
