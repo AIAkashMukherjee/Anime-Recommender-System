@@ -9,15 +9,17 @@ from config.path_config import *
 
 logger = get_logger(__name__)
 
+comet_api_key=os.getenv("COMET_API_KEY")
+
 class ModelTraining:
     def __init__(self,data_path):
         self.data_path= data_path
 
-        # self.experiment = comet_ml.Experiment(
-        #     api_key="uqgrnGhGvBA0zC3HfdmGf2WN9",
-        #     project_name="mlops-course-2",
-        #     workspace="data-guru0"
-        # )
+        self.experiment = comet_ml.Experiment(
+            api_key=comet_api_key,
+            project_name="anime-recommender",
+            workspace="aiakashmukherjee"
+        )
         logger.info("Model Training & COMET ML initialized..")
 
 
@@ -83,12 +85,12 @@ class ModelTraining:
             model.load_weights(CHECKPOINT_FILE_PATH)
             logger.info("Model training Completedd.....") 
 
-            # for epoch in range(len(history.history['loss'])):
-            #     train_loss = history.history["loss"][epoch]
-            #     val_loss = history.history["val_loss"][epoch]
+            for epoch in range(len(history.history['loss'])):
+                train_loss = history.history["loss"][epoch]
+                val_loss = history.history["val_loss"][epoch]
 
-                # self.experiment.log_metric('train_loss',train_loss,step=epoch)
-                # self.experiment.log_metric('val_loss',val_loss,step=epoch)
+                self.experiment.log_metric('train_loss',train_loss,step=epoch)
+                self.experiment.log_metric('val_loss',val_loss,step=epoch)
             self.save_model_weights(model=model)
         except Exception as e:
             raise CustomException(e,sys)  
@@ -112,6 +114,10 @@ class ModelTraining:
 
             joblib.dump(user_weights,USER_WEIGHTS_PATH)
             joblib.dump(anime_weights,ANIME_WEIGHTS_PATH)
+
+            self.experiment.log_asset(MODEL_PATH)
+            self.experiment.log_asset(ANIME_WEIGHTS_PATH)
+            self.experiment.log_asset(USER_WEIGHTS_PATH)
 
             logger.info("User and Anime weights saved sucesfully....")
 
