@@ -5,6 +5,7 @@ from utils.common_function import read_yaml
 from config.path_config import *
 from src.components.data_ingestion import DataIngestion
 from src.components.data_transformation import DataTransformation
+from src.components.model_trainer import ModelTraining
 
 if __name__=="__main__":
     # data_ingestion = DataIngestion(read_yaml(CONFIG_PATH))
@@ -12,3 +13,5 @@ if __name__=="__main__":
     
     data_processor = DataTransformation(ANIMELIST_CSV,PROCESSED_DIR)
     data_processor.run()
+    model_trainer = ModelTraining(PROCESSED_DIR)
+    model_trainer.train_model()
