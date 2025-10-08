@@ -1,6 +1,10 @@
 /my_env
 .env 
 /notebook/weights.weights.h5
-/artifacts/raw
+artifacts/raw/
+artifacts/processed/
+artifacts/model/
+artifacts/weights/
+artifacts/model_checkpoint/
 *.h5
 *.csv
