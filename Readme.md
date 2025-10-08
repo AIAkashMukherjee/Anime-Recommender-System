@@ -1,22 +1,7 @@
-
 # Anime Recommender System 🎬
 
 A hybrid anime recommendation system built with Python, Flask, and ML pipelines.
 It supports recommending anime based on **user ID** (collaborative/hybrid) and (optionally) content-based similarity.
-
-## Table of Contents
-
-- [Project Structure](#project-structure)
-- [Features](#features)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Usage](#usage)
-- [How It Works](#how-it-works)
-- [Adding New Data / Retraining](#adding-new-data--retraining)
-- [Limitations &amp; Future Work](#limitations--future-work)
-- [License](#license)
-
----
 
 ## Project Structure
 
@@ -56,8 +41,6 @@ It supports recommending anime based on **user ID** (collaborative/hybrid) and (
    git clone https://github.com/AIAkashMukherjee/Anime-Recommender-System.git
    cd Anime-Recommender-System
    ```
-
-
 
 ### How to Run
 
